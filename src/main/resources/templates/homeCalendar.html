@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>マネマネ-monemana-</title>
+    </head>
+
+    <body>
+        <h1>マネマネ-monemana-</h1>
+
+        <form action="/add">
+            <input type="radio" name="expenseBool" value="支出" checked />支出
+            <input type="radio" name="expenseBool" value="収入" />収入
+            <label>日付</label>
+            <input name="date" type="date" />
+            <label>金額</label>
+            <input name="amount" type="number" />
+            <label>カテゴリー</label>
+            <input name="category" type="text" />
+            <label>アカウント</label>
+            <input name="account" type="text" />
+            <label>メモ</label>
+            <input name="memo" type="text" />
+            <input type="submit" value="保存" />
+        </form>
+
+        <table>
+            <tr>
+                <th><form action="/prev"><input type="submit" value="<-" /></form></th>
+                <th><p id="year_month" th:text="${yearMonth[0]} + 年 + ${yearMonth[1]} + 月"></p></th>
+                <th><form action="/next"><input type="submit" value="->" /></form></th>
+            </tr>
+        </table>
+
+        <div class="expensesList" th:each="expense : ${expenseList}">
+            <table border="0" >
+
+                    <tr>
+                        <td th:text="${expense.date}"></td>
+                        <td align="right" th:text="${expense.account}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="${expense.category}"></td>
+                        <td align="right" th:text="'¥' + ${expense.amount}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" th:text="${expense.memo}"></td>
+                    </tr>
+
+            </table>
+        </div>
+    </body>
+</html>

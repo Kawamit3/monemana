@@ -33,7 +33,7 @@
         </table>
 
         <div class="expensesList" th:each="expense : ${expenseList}">
-            <table border="0" >
+            <table style="border: 1px solid;" >
 
                     <tr>
                         <td th:text="${expense.date}"></td>
@@ -44,7 +44,13 @@
                         <td align="right" th:text="'¥' + ${expense.amount}"></td>
                     </tr>
                     <tr>
-                        <td colspan="2" th:text="${expense.memo}"></td>
+                        <td th:text="${expense.memo}"></td>
+                        <td >
+                            <form action="/delete">
+                                <button type="submit" id="delete_button">削除</button>
+                                <input style="display: none;" name="id" th:value="${expense.id}" />
+                            </form>
+                        </td>
                     </tr>
 
             </table>

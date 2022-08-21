@@ -80,4 +80,18 @@ public class ExpensesDao {
         // 変換したレコードを使用して挿入を実行
         insert.execute(param);
     }
+
+    /**
+     * データベースからレコードを削除
+     *
+     * @param id    削除するレコードのID
+     */
+    public int delete(String id){
+
+        // SQLに引数をバインドして更新操作を実行
+        int num = jdbcTemplate.update("DELETE FROM expenses WHERE id = ?", id);
+
+        // 更新した行数を返す
+        return num;
+    }
 }

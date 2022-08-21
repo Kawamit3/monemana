@@ -23,10 +23,8 @@ public class HomeController {
                    int amount,                              // 金額
                    String category,                         // カテゴリー
                    String account,                          // アカウント
-                   String memo) {
-    }                           // メモ
+                   String memo){}                           // メモ
 
-    private List<Expense> expenses = new ArrayList<>();     // レコードを格納するArrayList
     private final ExpensesDao dao;                          // データベースにアクセスするインスタンス
     Calendar cal = Calendar.getInstance();                  // アプリの日時情報
 
@@ -130,12 +128,24 @@ public class HomeController {
         // データベースへレコードを追加
         dao.add(item);
 
-        // ArrayListへレコードを追加
-        expenses.add(item);
-
         // /calendarへ転送
         return "redirect:/calendar";
     }
 
+    /**
+     * イベントを削除
+     *
+     * @param id    削除するイベントのID
+     * @return      /calendarへ転送
+     */
+    @GetMapping("/delete")
+    String deleteExpense(@RequestParam("id") String id){
+
+        // データベースからレコードを削除
+        dao.delete(id);
+
+        // /calendarへ転送
+        return "redirect:/calendar";
+    }
 
 }

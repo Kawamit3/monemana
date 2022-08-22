@@ -26,7 +26,7 @@ public class HomeController {
                    String memo){}                           // メモ
 
     private final ExpensesDao dao;                          // データベースにアクセスするインスタンス
-    Calendar cal = Calendar.getInstance();                  // アプリの日時情報
+    private Calendar cal = Calendar.getInstance();                  // アプリの日時情報
 
     /**
      * コンストラクタ
